@@ -46,20 +46,25 @@ def RightConst(y, l, tau):
 
 
 def main(args):
-    T = 1
-    l = 42
-    a = 2
-    h = 1
-    tau = 1
+    print(args)
 
-    Fi_a = 3.5
-    Fi_b = 1
-    Fi_c = 1
-    B_a = 0
-    B_b = 0.25
-    B_c = -0.25
-    B_d = -0.5
-    B_e = -0.5
+    global T
+    global l
+    global a
+    global h
+    global tau
+    global Fi_a
+    global Fi_b
+    global Fi_c
+    global B_a
+    global B_b
+    global B_c
+    global B_d
+    global B_e
+
+    T = args[0] ; l = args[1] ; a = args[2] ; h = args[3] ; tau = args[4]
+    Fi_a = args[5] ; Fi_b = args[6] ; Fi_c = args[7]
+    B_a = args[8] ; B_b = args[9] ; B_c = args[10] ; B_d = args[11] ; B_e = args[12]
 
     y = np.zeros(l - 1)
     b = np.zeros(l + 1)
