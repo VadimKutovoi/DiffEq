@@ -1,6 +1,7 @@
 import matplotlib as mp
 import matplotlib.pyplot as plt
 import numpy as np
+import new
 
 from tkinter import *
 from math import sin
@@ -69,7 +70,6 @@ def main(args):
     y = np.zeros(l - 1)
     b = np.zeros(l + 1)
     y0 = np.zeros(l + 1)
-    A = np.zeros(shape=(l - 1, l - 1))
     B = np.zeros(shape=(l + 1, l + 1))
     yb = np.zeros(l + 1)
 
@@ -82,16 +82,6 @@ def main(args):
 
     coef1 = (-1) * (a * a) / (h * h)
     coef2 = ((2 * a * a) / (h * h)) + (1 / tau)
-
-    for i in range(1, l - 2):
-        A[i][i - 1] = coef1
-        A[i][i] = coef2
-        A[i][i + 1] = coef1
-
-    A[0][0] = coef2
-    A[0][1] = coef1
-    A[l - 2][l - 3] = coef1
-    A[l - 2][l - 2] = coef2
 
     for i in range(1, l):
         B[i][i - 1] = coef1
@@ -111,7 +101,6 @@ def main(args):
     yb[0] = 0
     yb[l] = 0
 
-
     for i in range(1, T + 1):
         tmp_y = RightConst(yb, l, tau)
         yb = np.linalg.solve(B, tmp_y)
@@ -121,11 +110,13 @@ def main(args):
     print(yb)
 
     x = [i for i in range(0, l + 1)]
-    plt.plot(x, yb, color='black')
-    plt.plot(x, y0, color='blue')
-    plt.plot(x, b, color='red')
+    plt.style.use('fivethirtyeight')
+    #plt.rcParams['figure.figsize']=(16,9)
+    mng = plt.get_current_fig_manager()
+    mng.resize(width=1600, height=900)
+    plt.minorticks_on()
+    plt.grid(which='both', color='gray')
     plt.show()
-
 
 class form:
     def __init__(self, master):
@@ -225,7 +216,8 @@ class form:
             self.args.append(float(self.coefB[3].get()))
             self.args.append(float(self.coefB[4].get()))
 
-            main(self.args)
+            #main(self.args)
+            new.main(self.args)
 
 
 if __name__ == '__main__':
