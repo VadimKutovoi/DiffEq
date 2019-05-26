@@ -1,7 +1,7 @@
 import matplotlib as mp
 import matplotlib.pyplot as plt
 import numpy as np
-import new
+import gui
 
 from tkinter import *
 from math import sin
@@ -217,7 +217,7 @@ class form:
             self.args.append(float(self.coefB[4].get()))
 
             #main(self.args)
-            new.main(self.args)
+            gui.main(self.args)
 
 
 if __name__ == '__main__':
